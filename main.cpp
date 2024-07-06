@@ -8,17 +8,30 @@
 #include <math.h>
 
 int main(){
-    double row{0};
-    while (row < 0.9){
-        std::vector<Point> point_vec = henon_iterate(Point{row, 0}, 2*M_PI*0.2525, 600);
-        std::string filename = (std::to_string(row) + ".txt");
-        std::ofstream file;
-        file.open(filename);
-        std::for_each(point_vec.begin(), point_vec.end(), [&](Point p){
-            file << p.x << " " << p.y << '\n';
-        });  
-        file.close();        
-        row += 0.1;
+    std::string filename = ("data.txt");
+    std::ofstream file;
+    file.open(filename);
+    
+    double row{0.1};
+    int n_iter{600};
+    double angle{0.2525};
+
+    while (row < 0.6){
+        Point start_p{row,0};
+        for (int iter = 0; iter < n_iter; iter++)
+        {
+            file << start_p.x << ";" << start_p.y << '\n';
+            start_p = henon(start_p, 2*M_PI*angle);
+            if (start_p.x > 1 || start_p.y > 1)
+            {
+                break;
+            }
+            
+        }
+        
+        row += 0.05;
     }
+    
+    file.close();        
 }
 
