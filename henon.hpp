@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
 
 #ifndef HENON_HPP
@@ -11,8 +12,8 @@ struct Point
 };
 
 Point rotate(double x, double y, double angle){
-    double end_x {x*cos(angle) + y*sin(angle)};
-    double end_y {-x*sin(angle) + y*cos(angle)};
+    double end_x {x*std::cos(angle) + y*std::sin(angle)};
+    double end_y {-x*std::sin(angle) + y*std::cos(angle)};
     Point result{end_x,end_y};
     return result;
 }
@@ -22,7 +23,7 @@ Point rotate(Point p, double angle){
 }
 
 Point henon(double x, double y, double angle){
-    return rotate(x, y + pow(x,2), angle);
+    return rotate(x, y + std::pow(x,2), angle);
 }
 
 Point henon(Point p, double angle){
@@ -31,7 +32,7 @@ Point henon(Point p, double angle){
 
 std::vector<Point> henon_iterate(Point start_p, double angle, int n_iter){
     std::vector<Point> points_vec = {start_p};
-    for (size_t iter = 0; iter < n_iter; iter++)
+    for (int iter = 0; iter < n_iter; iter++)
     {
         points_vec.push_back(henon(points_vec[iter], angle));
         if (points_vec[iter+1].x > 1 || points_vec[iter+1].y > 1)
