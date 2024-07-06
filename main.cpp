@@ -1,8 +1,6 @@
 #include "henon.hpp"
-#include<vector>
 #include <string>
 #include<iostream>
-#include<algorithm>
 #include<fstream>
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -14,7 +12,7 @@ int main(){
     
     double row{0.1};
     int n_iter{600};
-    double angle{0.2525};
+    double angle{0.4};
 
     while (row < 0.6){
         Point start_p{row,0};
