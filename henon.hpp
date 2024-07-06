@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 
+#ifndef HENON_HPP
+#define HENON_HPP
+
 struct Point
 {
     double x{};
@@ -38,3 +41,5 @@ std::vector<Point> henon_iterate(Point start_p, double angle, int n_iter){
     }
     return points_vec;
 }
+
+#endif
