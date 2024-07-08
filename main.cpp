@@ -9,16 +9,22 @@
 
 int main(){
     
-    double row{0.1};
     int n_iter{600};
-    std::vector<double> angles = {0.2525, 0.4};
-    //double angle{0.4};
+    std::vector<double> angles = {0.205};
+/*     std::vector<double> angles(50);
+    double start{0.2500};
+    double step{0.0001};
+    for (size_t i = 0; i < angles.size(); i++)
+    {
+        angles[i] = start + i*step;
+    } */
 
     std::for_each(angles.begin(), angles.end(), [&](double angle){
         std::string filename = ("data/"+ std::to_string(angle) +"_data.txt");
         std::ofstream file;
         file.open(filename);
 
+        double row{0.1};
         while (row < 0.6){
             Point start_p{row,0};
             for (int iter = 0; iter < n_iter; iter++)
